@@ -1,0 +1,78 @@
+# depslib dependency file v1.0
+1621433881 source:c:\users\administrador\desktop\parcial_laboratorio\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1621433307 c:\users\administrador\desktop\parcial_laboratorio\utn.h
+
+1621435184 source:c:\users\administrador\desktop\parcial_laboratorio\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Trabajo.h"
+	"Servicio.h"
+	"Tipo.h"
+	"Marca.h"
+	"Fecha.h"
+	"Notebook.h"
+
+1621426839 source:c:\users\administrador\desktop\parcial_laboratorio\fecha.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Fecha.h"
+
+1621426855 c:\users\administrador\desktop\parcial_laboratorio\fecha.h
+
+1621431287 source:c:\users\administrador\desktop\parcial_laboratorio\marca.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Marca.h"
+
+1621428875 c:\users\administrador\desktop\parcial_laboratorio\marca.h
+
+1621435203 source:c:\users\administrador\desktop\parcial_laboratorio\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Servicio.h"
+
+1621435184 c:\users\administrador\desktop\parcial_laboratorio\servicio.h
+
+1621426838 source:c:\users\administrador\desktop\parcial_laboratorio\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Tipo.h"
+
+1621426855 c:\users\administrador\desktop\parcial_laboratorio\tipo.h
+
+1621426838 source:c:\users\administrador\desktop\parcial_laboratorio\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Trabajo.h"
+
+1621426855 c:\users\administrador\desktop\parcial_laboratorio\trabajo.h
+
+1621434194 c:\users\administrador\desktop\parcial_laboratorio\notebook.h
+	"Marca.h"
+	"Tipo.h"
+
+1621434228 source:c:\users\administrador\desktop\parcial_laboratorio\notebook.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Notebook.h"
+	"Marca.h"
+	"Tipo.h"
+	"utn.h"
+
