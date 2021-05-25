@@ -2,6 +2,8 @@
 #define SERVICIO_H_INCLUDED
 
 
+#define ERROR -1
+#define OK 1
 
 typedef struct{
 
@@ -13,6 +15,7 @@ typedef struct{
 }sServicio;
 
 #endif // SERVICIO_H_INCLUDED
-int listarServicios(sServicio listaServicios[],int tam);
+int mostrarListaServicios(sServicio listaServicios[],int tam);
 void mostrarService(sServicio listaServicios);
-int inicializarlistaService(sServicio listaServicios[],int tam);
+int buscarServicioId(sServicio listaSer[],int tam, int id);
+

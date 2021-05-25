@@ -19,20 +19,20 @@
  * \return Si obtuvo el numero [0] si no [-1]
  */
 int getInt(int *pResultado,
-          char *pMensaje,
-          char *pMensajeError,
-          int minimo,
-          int maximo,
-          int reintentos)
+           char *pMensaje,
+           char *pMensajeError,
+           int minimo,
+           int maximo,
+           int reintentos)
 {
     int retorno = -1;
     int buffer;
 
     if(pResultado != NULL &&
-       pMensaje != NULL &&
-       pMensajeError != NULL &&
-       minimo < maximo &&
-       reintentos >=0)
+            pMensaje != NULL &&
+            pMensajeError != NULL &&
+            minimo < maximo &&
+            reintentos >=0)
     {
         do
         {
@@ -51,7 +51,8 @@ int getInt(int *pResultado,
             printf("%s",pMensajeError);
             reintentos--;
 
-        }while(reintentos >= 0);
+        }
+        while(reintentos >= 0);
 
     }
     return retorno;//VA A RETORNAR 0 SI ESTA TODOOK
@@ -67,20 +68,20 @@ int getInt(int *pResultado,
  * \return Si obtuvo el numero [0] si no [-1]
  */
 float getFloat(float *pResultado,
-          char *pMensaje,
-          char *pMensajeError,
-          float minimo,
-          float maximo,
-          int reintentos)
+               char *pMensaje,
+               char *pMensajeError,
+               float minimo,
+               float maximo,
+               int reintentos)
 {
     int retorno = -1;
     float buffer;
 
     if(pResultado != NULL &&
-       pMensaje != NULL &&
-       pMensajeError != NULL &&
-       minimo < maximo &&
-       reintentos >=0)
+            pMensaje != NULL &&
+            pMensajeError != NULL &&
+            minimo < maximo &&
+            reintentos >=0)
     {
         do
         {
@@ -99,7 +100,8 @@ float getFloat(float *pResultado,
             printf("%s",pMensajeError);
             reintentos--;
 
-        }while(reintentos >= 0);
+        }
+        while(reintentos >= 0);
 
     }
     return retorno;//VA A RETORNAR 0 SI ESTA TODOOK
@@ -115,20 +117,20 @@ float getFloat(float *pResultado,
  * \return Si obtuvo el caracter [0] si no [-1]
  */
 char getChar(char *pResultado,
-          char *pMensaje,
-          char *pMensajeError,
-          char minimo,
-          char maximo,
-          int reintentos)
+             char *pMensaje,
+             char *pMensajeError,
+             char minimo,
+             char maximo,
+             int reintentos)
 {
     int retorno = -1;
     char buffer;
 
     if(pResultado != NULL &&
-       pMensaje != NULL &&
-       pMensajeError != NULL &&
-       minimo < maximo &&
-       reintentos >=0)
+            pMensaje != NULL &&
+            pMensajeError != NULL &&
+            minimo < maximo &&
+            reintentos >=0)
     {
         do
         {
@@ -148,7 +150,8 @@ char getChar(char *pResultado,
             printf("%s",pMensajeError);
             reintentos--;
 
-        }while(reintentos >= 0);
+        }
+        while(reintentos >= 0);
 
     }
     return retorno;//VA A RETORNAR 0 SI ESTA TODOOK
@@ -169,30 +172,31 @@ int getString(char *pResultado,char *pMensaje,char *pMensajeError,int minimo,int
     char buffer[500];
 
     if(pResultado != NULL &&
-       pMensaje != NULL &&
-       pMensajeError != NULL &&
-       minimo < maximo &&
-       reintentos >=0)
-       {
-           do
-           {
-               printf("%s",pMensaje);
-               fflush(stdin);
-               fgets(buffer,sizeof(buffer),stdin);
-               //retorna cadena si es realizada con éxito.
-               buffer[strlen(buffer)-1] = '\0';
-               if(strlen(buffer)>=minimo && strlen(buffer)<=maximo)
-               {
-                   strncpy(pResultado,buffer,maximo+1);
-                   retorno = 0;
-                   break;
-               }
+            pMensaje != NULL &&
+            pMensajeError != NULL &&
+            minimo < maximo &&
+            reintentos >=0)
+    {
+        do
+        {
+            printf("%s",pMensaje);
+            fflush(stdin);
+            fgets(buffer,sizeof(buffer),stdin);
+            //retorna cadena si es realizada con éxito.
+            buffer[strlen(buffer)-1] = '\0';
+            if(strlen(buffer)>=minimo && strlen(buffer)<=maximo)
+            {
+                strncpy(pResultado,buffer,maximo+1);
+                retorno = 0;
+                break;
+            }
 
-               printf("%s",pMensajeError);
-               reintentos--;
+            printf("%s",pMensajeError);
+            reintentos--;
 
-           }while(reintentos >=0);
-       }
+        }
+        while(reintentos >=0);
+    }
     return retorno;
 }
 
@@ -227,8 +231,8 @@ int esSoloLetras(char str[])
         //si NO es un espacio y que no sea algo que este entra la a y z
         //y algo que no este entre la A y la Z
         if((str[i] != ' ')
-           &&(str[i] < 'a' || str[i] > 'z')
-           &&(str[i] < 'A' || str[i] > 'Z'))
+                &&(str[i] < 'a' || str[i] > 'z')
+                &&(str[i] < 'A' || str[i] > 'Z'))
             return 0;
         i++;
     }
@@ -248,10 +252,10 @@ int esAlfanumerico(char str[])
     while(str[i] != '\0')
     {
         if((str[i] != ' ')
-           &&(str[i] < 'a' || str[i] > 'z')
-           &&(str[i] < 'A' || str[i] > 'Z')
-           &&(str[i] < '0' || str[i] > '9'))
-           return 0;
+                &&(str[i] < 'a' || str[i] > 'z')
+                &&(str[i] < 'A' || str[i] > 'Z')
+                &&(str[i] < '0' || str[i] > '9'))
+            return 0;
         i++;
     }
     return 1;
@@ -269,14 +273,12 @@ int esTelefono(char str[])
     while(str[i] != '\0')
     {
         if((str[i] != ' ')
-           &&(str[i] != '-')
-           &&(str[i] < '0' || str[i] > '9'))
-           return 0;
+                &&(str[i] != '-')
+                &&(str[i] < '0' || str[i] > '9'))
+            return 0;
         if(str[i] == '-')
             contadorDeGuiones ++;
         i++;
     }
     return 1;
 }
-
-

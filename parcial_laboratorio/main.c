@@ -10,29 +10,49 @@
 #include "Fecha.h"
 #include "Notebook.h"
 
+
 #define TAM_Notebooks 10
-#define TAM_Marcas 5
-#define TAM_Tipos 5
-#define TAM_Servicios 5
+#define TAM_Marcas 4
+#define TAM_Tipos 4
+#define TAM_Servicios 4
+#define TAM_Jobs 1000
 
 int menu();
 
 int main()
 {
-
-
     sNotebook listaNotebook[TAM_Notebooks];
+    sTrabajo listaTrabajos[TAM_Jobs];
 
-    //inicializarlistaNotebook(listaNotebook,TAM_Notebooks ); //inicializo lista iSempty
-    //inicializarlistaService(listaServicios,TAM_Servicios);
+    inicializarlistaNotebook(listaNotebook,TAM_Notebooks); //inicializo lista iSempty
+    inicializarlistaTrabajos(listaTrabajos,TAM_Jobs);
 
-    sMarca listaMarcas[TAM_Marcas]= {{1,"Compaq"},{2,"Asus"},{3,"Acer"},{4,"Hp"}};
-    sTipo listaTipos[TAM_Tipos]= {{1,"Gamer"},{2,"Diseño"},{3,"Ultrabook"},{4,"Normalita"}};
-    sServicio listaServicios[TAM_Servicios]={{1,"Formateo",200},{2,"Instalaciones", 150},{3,"Basico",205},{4,"Algomas",150}};
+    sMarca listaMarcas[TAM_Marcas]={
+        {1000,"Compaq",0},
+        {1002,"Asus",0},
+        {1003,"Acer",0},
+        {1004,"HP",0}
+    };
 
+    sTipo listaTipos[TAM_Tipos]=
+    {
+        {5000,"Gamer",0},
+        {5001,"Disenio",0},
+        {5003,"Ultrabook",0},
+        {5004,"Normalita",0}
+    };
+
+    sServicio listaServicios[TAM_Servicios]=
+    {
+        {20000,"Bateria",250,0},
+        {20001,"Antivirus",300,0},
+        {20002,"Actualizacion",400,0},
+        {20003,"Fuente",600,0}
+    };
 
 
     int idNotebooks = 1;
+    int idTrabajos = 1;
 
 
     char exit = 'n';
@@ -42,51 +62,63 @@ int main()
         switch(menu())
         {
 
-                case 1:
-                    altaNotebook(listaNotebook,TAM_Notebooks ,listaMarcas,TAM_Marcas,&idNotebooks);
-                    break;
+            case 1:
+                altaNotebook(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos,&idNotebooks);
+                break;
 
-                case 2:
-                    //Modificar NOTEBOOK
-                    break;
+            case 2:
+                modificarDatosNotebook(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                break;
 
-                case 3:
-                    bajaNotebook(listaNotebook,TAM_Notebooks);
-                    break;
+            case 3:
+                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                bajaNotebook(listaNotebook,TAM_Notebooks);
+                break;
 
-                case 4:
-                    mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas);
-                    break;
+            case 4:
+                ordenarNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas);
+                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                break;
 
-                case 5:
-                    //E.	LISTAR  MARCAS
-                    break;
+            case 5:
+                mostrarListaDeMarcas(listaMarcas,TAM_Marcas);
+                break;
 
-                case 6:
-                    //F.	LISTAR TIPOS
-                    break;
+            case 6:
+                mostrarListaDeTipos(listaTipos,TAM_Tipos);
+                break;
 
-                case 7:
-                    //G.	LISTAR SERVICIOS
-                    listarServicios(listaServicios,TAM_Servicios);
-                    break;
+            case 7:
+                mostrarListaServicios(listaServicios,TAM_Servicios);
+                break;
 
-                case 8:
-                    //H.	ALTA TRABAJO
-                    break;
+            case 8:
+                altaTrabajo(
+                            listaTrabajos,TAM_Jobs,
+                            listaNotebook, TAM_Notebooks,
+                            listaServicios,TAM_Servicios,
+                            listaMarcas,TAM_Marcas,
+                            listaTipos,TAM_Tipos,&idTrabajos
+                            );
+                break;
 
-                case 9:
-                    //I.	LISTAR TRABAJOS
-                    break;
+            case 9:
+                printf("%d %d %s %d %d"
+                       ,listaNotebook[0].id
+                       ,listaNotebook[0].marcaN.idMarca
+                       ,listaNotebook[0].modelo
+                       ,listaNotebook[0].tipo.idTipo
+                       ,listaNotebook[0].precio);
+                break;
 
-                case 11:
-                    printf("Confirma Salida ? <s/n> :\n");
-                    fflush(stdin);
-                    scanf("%c",exit);
-                    break;
+            case 11:
+                printf("Confirma Salida ? <s/n> :\n");
+                fflush(stdin);
+                scanf("%c",&exit);
+                break;
 
-                default:
-                    break;
+            default:
+                break;
 
         }
         system("pause");

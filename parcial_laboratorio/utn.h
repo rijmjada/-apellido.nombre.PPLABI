@@ -26,10 +26,12 @@ int getString(char *pResultado,
           int maximo,
           int reintentos);
 
+
 int esNumerico(char str[]);
 int esTelefono(char str[]);
 int esAlfanumerico(char str[]);
 int esSoloLetras(char str[]);
+
 
 
 #endif // UTN_H_INCLUDED
