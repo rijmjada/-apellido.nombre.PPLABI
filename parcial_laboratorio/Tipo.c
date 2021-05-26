@@ -4,8 +4,6 @@
 
 #include "Tipo.h"
 
-
-
 void mostrarTipo(sTipo listaTipos)
 {
 
@@ -16,7 +14,6 @@ void mostrarTipo(sTipo listaTipos)
         printf("----------------------------\n");
 
 }
-
 
 int mostrarListaDeTipos(sTipo listaTipos[],int tamTipos)
 {
@@ -66,3 +63,5 @@ int cargarDescripcionTipo(int id, sTipo listaTipos[],int tamTipos,char descrip[]
 
     return retorno;
 }
+
+

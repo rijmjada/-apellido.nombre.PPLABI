@@ -23,8 +23,7 @@ int getInt(int *pResultado,
            char *pMensajeError,
            int minimo,
            int maximo,
-           int reintentos)
-{
+           int reintentos){
     int retorno = -1;
     int buffer;
 
@@ -72,8 +71,7 @@ float getFloat(float *pResultado,
                char *pMensajeError,
                float minimo,
                float maximo,
-               int reintentos)
-{
+               int reintentos){
     int retorno = -1;
     float buffer;
 
@@ -121,8 +119,7 @@ char getChar(char *pResultado,
              char *pMensajeError,
              char minimo,
              char maximo,
-             int reintentos)
-{
+             int reintentos){
     int retorno = -1;
     char buffer;
 
@@ -166,8 +163,7 @@ char getChar(char *pResultado,
  * \param maximo longitud maximo a validar
  * \return Si obtuvo la cadena [0] si no [-1]
  */
-int getString(char *pResultado,char *pMensaje,char *pMensajeError,int minimo,int maximo,int reintentos)
-{
+int getString(char *pResultado,char *pMensaje,char *pMensajeError,int minimo,int maximo,int reintentos){
     int retorno = -1;
     char buffer[500];
 
@@ -205,8 +201,7 @@ int getString(char *pResultado,char *pMensaje,char *pMensajeError,int minimo,int
  * \param str Array con la cadena a ser analizada
  * \return 1 si es numérico y 0 si no lo es
  */
-int esNumerico(char str[])
-{
+int esNumerico(char str[]){
     int i = 0;
     while(str[i] != '\0')
     {
@@ -222,8 +217,7 @@ int esNumerico(char str[])
  * \param str Array con la cadena a ser analizada
  * \return 1 si contiene solo ' ' y letras y 0 si no lo es
  */
-int esSoloLetras(char str[])
-{
+int esSoloLetras(char str[]){
     int i = 0;
     while(str[i] != '\0')
     {
@@ -245,8 +239,7 @@ int esSoloLetras(char str[])
  * \return 1 si contiene solo espacio o letras y numeros . 0 si no lo es
  *
  */
-int esAlfanumerico(char str[])
-{
+int esAlfanumerico(char str[]){
 
     int i = 0;
     while(str[i] != '\0')
@@ -266,8 +259,7 @@ int esAlfanumerico(char str[])
  * \param str Array con la cadena a ser analizada
  * \return 1 si contiene solo números, espacios y UN guión
  */
-int esTelefono(char str[])
-{
+int esTelefono(char str[]){
     int i = 0;
     int contadorDeGuiones = 0;
     while(str[i] != '\0')

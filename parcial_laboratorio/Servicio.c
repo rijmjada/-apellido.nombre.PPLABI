@@ -32,7 +32,6 @@ int mostrarListaServicios(sServicio listaServicios[],int tam)
     return retorno;
 }
 
-
 void mostrarService(sServicio listaServicios)
 {
     if(listaServicios.isEmpty == 0)
@@ -64,4 +63,24 @@ int buscarServicioId(sServicio listaSer[],int tam, int id)
     return indice;
 }
 
+int cargarDescripcionService(int id,sServicio lista[],int tam,char descrip[])
+{
+
+  int todoOk = -1;
+
+    if(lista != NULL && tam > 0 && descrip != NULL){
+
+        for(int i=0; i<tam; i++){
+
+            if(lista[i].idServicio == id){
+
+                strcpy(descrip,lista[i].descpServicio);
+
+                todoOk = 1;
+                break;
+            }
+        }
+    }
+    return todoOk;
+}
 

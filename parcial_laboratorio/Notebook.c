@@ -7,10 +7,7 @@
 #include "Tipo.h"
 #include "utn.h"
 
-
-
-int inicializarlistaNotebook(sNotebook listaNotebook[],int tam)
-{
+int inicializarlistaNotebook(sNotebook listaNotebook[],int tam){
     int retorno = ERROR;
     if(listaNotebook != NULL && tam >0)
     {
@@ -23,12 +20,11 @@ int inicializarlistaNotebook(sNotebook listaNotebook[],int tam)
     return retorno;
 }
 
-int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM,sTipo listaTipos[],int tamTipos, int* idNotebooks)
-{
+int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM,sTipo listaTipos[],int tamTipos, int* idNotebooks){
 
     int retorno = ERROR;
-    sNotebook nuevNote;
-    int indice;
+    char bufferModelo[20];
+    int bufferIdMarca,bufferIdTipo,bufferPrecio,indice;
 
     system("cls");
     printf("   Alta Notebook\n\n");
@@ -50,32 +46,46 @@ int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM
         }
         else
         {
-            getString(nuevNote.modelo,"\nIngrese nombre modelo : \n","\nERROR",2,19,3);
+            getString(bufferModelo,"\nIngrese nombre modelo : \n","\nERROR",2,19,3);
+
             mostrarListaDeMarcas(listaMarcas,tamM);                                         //Muestro lista de marcas
-            getInt(&nuevNote.marcaN.idMarca,"\nIngrese id marca <1000/1004>: \n","\nERROR",1000,1004,3);
-            mostrarListaDeTipos(listaTipos,tamTipos);                                       //Muestro lista de Tipos
-            getInt(&nuevNote.tipo.idTipo,"\nIngrese id tipo <5000/5004>: \n","\nERROR",5000,5004,3);
-            system("cls");
-            getInt(&nuevNote.precio,"\nIngrese precio $ : \n","\nERROR",1,999999,2);
+            getInt(&bufferIdMarca,"\nIngrese id marca <1000/1004>: \n","\nERROR",1000,1004,5);
+            if(validarIdMarca(listaMarcas,tamM,bufferIdMarca) == 1 )
+            {
+                mostrarListaDeTipos(listaTipos,tamTipos);                                       //Muestro lista de Tipos
+                getInt(&bufferIdTipo,"\nIngrese id tipo <5000/5004>: \n","\nERROR",5000,5004,5);
+                if(validarIdTipo(listaTipos,tamTipos,bufferIdTipo) == 1)
+                {
+                    system("cls");
+                    getInt(&bufferPrecio,"\nIngrese precio $ : \n","\nERROR",1,999999,5);
 
 
-            listaNotebook[indice] = nuevNote;
-            listaNotebook[indice].id = *idNotebooks;
-            listaNotebook[indice].isEmpty= 0;
-            *idNotebooks = *idNotebooks + 1;
+                    strcpy(listaNotebook[indice].modelo,bufferModelo);
+                    listaNotebook[indice].precio = bufferPrecio;
+                    listaNotebook[indice].marcaN.idMarca = bufferIdMarca;
+                    listaNotebook[indice].tipo.idTipo = bufferIdTipo;
+                    listaNotebook[indice].id = *idNotebooks;
+                    listaNotebook[indice].isEmpty= 0;
+                    *idNotebooks = *idNotebooks + 1;
 
-            retorno = OK;
-
+                    retorno = OK;
+                }
+                else
+                {
+                    printf("\nNo ingreso un ID valido\n");
+                }
+            }
+            else
+            {
+                printf("\nNo ingreso un ID valido\n");
+            }
         }
-
     }
 
     return retorno;
 }
 
-
-int buscarEspacioLibre(sNotebook listaNotebook[],int tam)
-{
+int buscarEspacioLibre(sNotebook listaNotebook[],int tam){
 
     int lugarLibreArray = ERROR;
     if (listaNotebook != NULL && tam > 0)
@@ -90,13 +100,10 @@ int buscarEspacioLibre(sNotebook listaNotebook[],int tam)
             }
         }
     }
-
-
     return lugarLibreArray;
 }
 
-int bajaNotebook(sNotebook listaNotebook[],int tam)
-{
+int bajaNotebook(sNotebook listaNotebook[],int tam){
 
     int retorno = ERROR;
     int id;
@@ -105,11 +112,9 @@ int bajaNotebook(sNotebook listaNotebook[],int tam)
 
     if(listaNotebook != NULL && tam > 0)
     {
-
         printf("    Baja Notebook\n");
         printf("Ingrese id : \n");
         scanf("%d",&id);
-
         indice = buscarNotebookId(listaNotebook,tam,id);
 
         if(indice == -1)
@@ -118,14 +123,11 @@ int bajaNotebook(sNotebook listaNotebook[],int tam)
         }
         else
         {
-
             printf("Confirma baja <s/n>? \n");
             fflush(stdin);
             scanf("%c",&confirma);
-
             if(confirma == 's')
             {
-
                 listaNotebook[indice].isEmpty = 1;
                 retorno = OK;
             }
@@ -133,121 +135,124 @@ int bajaNotebook(sNotebook listaNotebook[],int tam)
             {
                 printf("Baja cancelada por el usuario.\n");
             }
-
         }
     }
-
 
     return retorno;
 }
 
-int buscarNotebookId(sNotebook listaNotebook[],int tam, int id)
-{
+int buscarNotebookId(sNotebook listaNotebook[],int tam, int id){
 
     int indice = ERROR;
 
-    for(int i=0; i<tam; i++)
+    if(listaNotebook != NULL && tam >0)
     {
-
-        if(listaNotebook[i].id == id && listaNotebook[i].isEmpty == 0)
+        for(int i=0; i<tam; i++)
         {
-            indice = i; // RETORNA POSICION !!
-            break;
-        }
 
+            if(listaNotebook[i].id == id && listaNotebook[i].isEmpty == 0)
+            {
+                indice = i; // RETORNA POSICION !!
+                break;
+            }
+        }
     }
     return indice;
 }
 
-void mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo)
-{
+int mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo){
+    int retorno = ERROR;
     char descripMarca[20];
     char descritipo[20];
-    cargarDescripcionMarca(listaNotebook.marcaN.idMarca, listaMarca,tamMarca,descripMarca);
-    cargarDescripcionTipo(listaNotebook.tipo.idTipo, listaTipo,tamTipo,descritipo);
 
-    printf("%d     %s     %s      %s     %d\n"
-           ,listaNotebook.id
-           ,descripMarca
-           ,listaNotebook.modelo
-           ,descritipo
-           ,listaNotebook.precio
-          );
-    printf("-------------------------------------------------\n");
-
-}
-
-void mostrarListaNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos)
-{
-
-    system("cls");
-    printf("\n   ** Lista de Notebooks **\n\n");
-    printf("id    Marca     Modelo      Tipo      Precio\n\n");
-    printf("-------------------------------------------------\n");
-
-
-    for(int i=0; i<tam; i++)
+    if(listaMarca != NULL && tamMarca >0 && listaTipo != NULL && tamTipo >0)
     {
-        if(listaNotebook[i].isEmpty == 0)
-        {
-            mostrarNotebook(listaNotebook[i],listaMarcas,tamMarcas,listaTipos,tamTipos);
-        }
+        cargarDescripcionMarca(listaNotebook.marcaN.idMarca, listaMarca,tamMarca,descripMarca);
+        cargarDescripcionTipo(listaNotebook.tipo.idTipo, listaTipo,tamTipo,descritipo);
+
+        printf("%d     %s     %s       %s       %d \n"
+               ,listaNotebook.id
+               ,descripMarca
+               ,listaNotebook.modelo
+               ,descritipo
+               ,listaNotebook.precio
+              );
+        printf("-------------------------------------------------\n");
+        retorno = TODO_OK;
     }
 
-    printf("\n\n");
+    return retorno;
 }
 
-int modificarDatosNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos)
-{
+int mostrarListaNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos){
+
+    int retorno = ERROR;
+
+    if(listaNotebook != NULL && tam > 0 && listaMarcas != NULL && tamMarcas > 0 && listaTipos != NULL && tamTipos >0)
+    {
+        system("cls");
+        printf("\n   ** Lista de Notebooks **\n\n");
+        printf("id    Marca     Modelo      Tipo      Precio\n\n");
+        printf("-------------------------------------------------\n");
+        retorno = TODO_OK;
+
+        for(int i=0; i<tam; i++)
+        {
+            if(listaNotebook[i].isEmpty == 0)
+            {
+                mostrarNotebook(listaNotebook[i],listaMarcas,tamMarcas,listaTipos,tamTipos);
+            }
+        }
+
+        printf("\n\n");
+    }
+
+    return retorno;
+}
+
+int modificarDatosNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos){
     int retorno = ERROR;
     int index;   // Variable donde se guarda el retorno de la llamada a la funcion BuscarNotebookID
     int id;     // Variable donde se guarda el Id que ingresa el usuario
 
-    system("cls");
-    printf("\n  Modificar Datos Notebook\n\n");
-    mostrarListaNotebooks(listaNotebook,tam,listaMarcas,tamMarcas,listaTipos,tamTipos);
-    getInt(&id,"\nIngrese la id que desea modificar:\n","\nDato Invalido\n",1,999,3);
-
-
-    index = buscarNotebookId(listaNotebook,tam,id);
-
-    if(index == -1)
+    if(listaNotebook != NULL && tam >0 && listaMarcas != NULL && tamMarcas > 0 && listaTipos != NULL && tamTipos > 0)
     {
-        printf("\nNo existe notebook con ese ID\n\n");
-    }
-    else
-    {
+        system("cls");
+        printf("\n  Modificar Datos Notebook\n\n");
+        mostrarListaNotebooks(listaNotebook,tam,listaMarcas,tamMarcas,listaTipos,tamTipos);
+        getInt(&id,"\nIngrese la id que desea modificar:\n","\nDato Invalido\n",1,999,3);
 
 
-        switch(menuModif())
+        index = buscarNotebookId(listaNotebook,tam,id);
+
+        if(index == -1)
         {
-
-        case 1:
-            getInt(&listaNotebook[index].precio,"\nIngrese NUEVO precio : \n","\nERROR",1,999999,5);
-            break;
-
-        case 2:
-            mostrarListaDeTipos(listaTipos,tamTipos);
-            getInt(&listaNotebook[index].tipo.idTipo,"\nIngrese id NUEVO tipo : \n","\nERROR",1,4,5);
-            break;
-
-        case 3:
-            printf("\nOperacion cancelada por el usuario.\n\n");
-            break;
-
-        default:
-            printf("No ingreso un dato valido!\n");
-            break;
+            printf("\nNo existe notebook con ese ID\n\n");
         }
-
-
+        else
+        {
+            switch(menuModif())
+            {
+            case 1:
+                getInt(&listaNotebook[index].precio,"\nIngrese NUEVO precio : \n","\nERROR",1,999999,5);
+                break;
+            case 2:
+                mostrarListaDeTipos(listaTipos,tamTipos);
+                getInt(&listaNotebook[index].tipo.idTipo,"\nIngrese id NUEVO tipo : \n","\nERROR",5000,5004,5);
+                break;
+            case 3:
+                printf("\nOperacion cancelada por el usuario.\n\n");
+                break;
+            default:
+                printf("No ingreso un dato valido!\n");
+                break;
+            }
+        }
     }
     return retorno;
 }
 
-
-int menuModif()
-{
+int menuModif(){
     int option;
     system("cls");
     printf("\n ** Elija una opcion ** \n");
@@ -259,24 +264,309 @@ int menuModif()
     return option;
 }
 
-int ordenarNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas)
-{
+int ordenarNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas){
     int retorno = ERROR;
     sNotebook noteAux;
 
-    for(int i=0; i<tam -1 ; i ++)
+    if(listaNotebook != NULL && tam > 0 && listaMarcas != NULL)
     {
-        for(int j=i+1; j<tam; j++)
+        for(int i=0; i<tam -1 ; i ++)
         {
-            if(listaNotebook[i].marcaN.descpMarca[i] > listaNotebook[j].marcaN.descpMarca[j] &&
-                    (strcmp(listaNotebook[i].marcaN.descpMarca,listaNotebook[j].marcaN.descpMarca) == 0 && listaNotebook[i].precio > listaNotebook[j].precio))
+            for(int j=i+1; j<tam; j++)
             {
-                noteAux = listaNotebook[i];
-                listaNotebook[i]=listaNotebook[j];
-                listaNotebook[j]= noteAux;
-                retorno = OK;
+                if(listaNotebook[i].marcaN.idMarca > listaNotebook[j].marcaN.idMarca
+                   || (listaNotebook[i].marcaN.idMarca == listaNotebook[j].marcaN.idMarca
+                       && listaNotebook[i].precio > listaNotebook[j].precio))
+                {
+                    noteAux = listaNotebook[i];
+                    listaNotebook[i]=listaNotebook[j];
+                    listaNotebook[j]= noteAux;
+                    retorno = OK;
+                }
             }
         }
     }
+
     return retorno;
 }
+
+int cargarDescripcionNotebook(int id,sNotebook lista[],int tam,char descrip[]){
+
+    int todoOk = -1;
+
+    if(lista != NULL && tam > 0 && descrip != NULL)
+    {
+        for(int i=0; i<tam; i++)
+        {
+            if(lista[i].id == id)
+            {
+                strcpy(descrip,lista[i].modelo);
+                todoOk = 1;
+                break;
+            }
+        }
+    }
+
+
+    return todoOk;
+}
+
+int validarIdTipo(sTipo lista[],int tam, int id){
+
+    int retorno = ERROR;
+
+    if(lista != NULL && tam > 0 )
+    {
+        for(int i=0; i<tam; i++)
+        {
+
+            if(lista[i].idTipo == id && lista[i].isEmpty == 0)
+            {
+                retorno = TODO_OK;
+                break;
+            }
+
+        }
+    }
+
+    return retorno;
+}
+
+int validarIdMarca(sMarca lista[],int tam, int id){
+    int retorno = ERROR;
+
+    if(lista != NULL && tam > 0 )
+    {
+        for(int i=0; i<tam; i++)
+        {
+
+            if(lista[i].idMarca == id && lista[i].isEmpty == 0)
+            {
+                retorno = TODO_OK;
+                break;
+            }
+
+        }
+    }
+
+
+    return retorno;
+}
+
+
+//-----------------------------------------------------BORRAR EN .H------------------------------------------------------------------//
+//---------------------------------------------------------EXTRAS-----------------------------------------------------------------//
+
+int mostrarListaSeleccionTipo(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos){
+    int retorno = ERROR;
+    int bufferTipo;
+    mostrarListaDeTipos(listaTipos,tamTipos);
+    getInt(&bufferTipo,"\nIngrese id tipo <5000/5003> :\n","\nId Invalido\n",5000,5003,3);
+
+
+    if(listaNotebook != NULL && tam > 0 && listaMarcas != NULL && tamMarcas > 0 && listaTipos != NULL && tamTipos >0)
+    {
+        system("cls");
+        printf("\n   ** Lista de Notebooks **\n\n");
+        printf("id    Marca     Modelo      Tipo      Precio\n\n");
+        printf("-------------------------------------------------\n");
+        retorno = TODO_OK;
+
+        for(int i=0; i<tam; i++)
+        {
+            if(listaNotebook[i].tipo.idTipo == bufferTipo && listaNotebook[i].isEmpty == 0)
+            {
+                mostrarNotebook(listaNotebook[i],listaMarcas,tamMarcas,listaTipos,tamTipos);
+            }
+        }
+
+        printf("\n\n");
+    }
+
+    return retorno;
+}
+
+int mostrarListaSeleccionMarca(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos){
+    int retorno = ERROR;
+    int bufferTipo;
+    mostrarListaDeMarcas(listaMarcas,tamMarcas);
+    getInt(&bufferTipo,"\nIngrese id marcas <1000/1003> :\n","\nId Invalido\n",1000,1003,3);
+
+
+    if(listaNotebook != NULL && tam > 0 && listaMarcas != NULL && tamMarcas > 0 && listaTipos != NULL && tamTipos >0)
+    {
+        system("cls");
+        printf("\n   ** Lista de Notebooks **\n\n");
+        printf("id    Marca     Modelo      Tipo      Precio\n\n");
+        printf("-------------------------------------------------\n");
+        retorno = TODO_OK;
+
+        for(int i=0; i<tam; i++)
+        {
+            if(listaNotebook[i].marcaN.idMarca == bufferTipo && listaNotebook[i].isEmpty == 0)
+            {
+                mostrarNotebook(listaNotebook[i],listaMarcas,tamMarcas,listaTipos,tamTipos);
+            }
+        }
+
+        printf("\n\n");
+    }
+
+    return retorno;
+}
+
+void hardcodearNotebooks(sNotebook listaNote[],int tamNote){
+    char x[]="uno";
+    int id = 1;
+    int marca = 1000;
+    int precio = 1505;
+    int tipo = 5000;
+
+    for(int i=0; i<3; i++)
+    {
+        listaNote[i].id = id;
+        listaNote[i].isEmpty = 0;
+        listaNote[i].marcaN.idMarca = marca;
+        strcpy(listaNote[i].modelo,x);
+        listaNote[i].precio = precio;
+        listaNote[i].tipo.idTipo = tipo;
+
+        id++;
+        marca++;
+        precio--;
+        tipo++;
+    }
+    char j[]="dos";
+    marca = 1000;
+    tipo = 5000;
+
+    for(int i=4; i<6; i++)
+    {
+        listaNote[i].id = id;
+        listaNote[i].isEmpty = 0;
+        listaNote[i].marcaN.idMarca = marca;
+        strcpy(listaNote[i].modelo,j);
+        listaNote[i].precio = precio;
+        listaNote[i].tipo.idTipo = tipo;
+
+        id++;
+        marca++;
+        precio++;
+        tipo++;
+    }
+    marca = 1000;
+    tipo = 5000;
+
+    for(int i=6; i<8; i++)
+    {
+        listaNote[i].id = id;
+        listaNote[i].isEmpty = 0;
+        listaNote[i].marcaN.idMarca = marca;
+        strcpy(listaNote[i].modelo,x);
+        listaNote[i].precio = precio;
+        listaNote[i].tipo.idTipo = tipo;
+
+        id++;
+        marca++;
+        precio++;
+        tipo++;
+    }
+
+}
+
+int ordenarNotebooksPorPrecio(sNotebook listaNotebook[],int tam){
+    int retorno = ERROR;
+    sNotebook noteAux;
+
+    if(listaNotebook != NULL && tam > 0 )
+    {
+        for(int i=0; i<tam -1 ; i ++)
+        {
+            for(int j=i+1; j<tam; j++)
+            {
+                if(listaNotebook[i].precio >= listaNotebook[j].precio)
+                {
+                    noteAux = listaNotebook[i];
+                    listaNotebook[i]=listaNotebook[j];
+                    listaNotebook[j]= noteAux;
+                    retorno = OK;
+                }
+            }
+        }
+    }
+
+    return retorno;
+}
+
+int ordenarNotebooksPorMarca(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca){
+    int retorno = ERROR;
+    sNotebook noteAux;
+
+    if(listaNotebook != NULL && tam > 0 )
+    {
+        for(int i=0; i<tam -1 ; i ++)
+        {
+            for(int j=i+1; j<tam; j++)
+            {
+                if(listaNotebook[i].marcaN.idMarca >= listaNotebook[j].marcaN.idMarca)
+                {
+                    noteAux = listaNotebook[i];
+                    listaNotebook[i]=listaNotebook[j];
+                    listaNotebook[j]= noteAux;
+                    retorno = OK;
+                }
+            }
+        }
+    }
+
+    return retorno;
+}
+
+int contarMarcasNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca){
+    int retorno = ERROR;
+    int contador = 0;
+    int bufferIdMarca;
+
+    if(listaNotebook != NULL && tam > 0 )
+    {
+
+        getInt(&bufferIdMarca,"\nIngrese id marca <1000/1003>: \n","\nID ingresado no es valido!.\n",1000,1003,5);
+
+        for(int i=0; i<tam ; i ++)
+        {
+            if(listaNotebook[i].marcaN.idMarca == bufferIdMarca)
+            {
+                contador++;
+                retorno = OK;
+            }
+        }
+        printf("\nLa cantidad registrada con ese ID es : %d\n",contador);
+    }
+
+    return retorno;
+}
+
+int contarTiposNotebook(sNotebook listaNotebook[],int tam,sTipo listaTipos[],int tamTipos){
+    int retorno = ERROR;
+    int contador = 0;
+    int bufferIDtipo;
+
+    if(listaNotebook != NULL && tam > 0 )
+    {
+
+        getInt(&bufferIDtipo,"\nIngrese id tipo <5000/5003>: \n","\nID ingresado no es valido!.\n",5000,5003,5);
+
+        for(int i=0; i<tam ; i ++)
+        {
+            if(listaNotebook[i].tipo.idTipo == bufferIDtipo)
+            {
+                contador++;
+                retorno = OK;
+            }
+        }
+        printf("\nLa cantidad registrada con ese ID es : %d\n",contador);
+    }
+
+    return retorno;
+}
+

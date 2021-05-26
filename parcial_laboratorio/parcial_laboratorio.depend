@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1621917967 source:c:\users\administrador\desktop\parcial_laboratorio\utn.c
+1621993046 source:c:\users\administrador\desktop\parcial_laboratorio\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -11,7 +11,7 @@
 
 1621917967 c:\users\administrador\desktop\parcial_laboratorio\utn.h
 
-1621916751 source:c:\users\administrador\desktop\parcial_laboratorio\main.c
+1621993191 source:c:\users\administrador\desktop\parcial_laboratorio\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -29,50 +29,50 @@
 	<string.h>
 	"Fecha.h"
 
-1621426855 c:\users\administrador\desktop\parcial_laboratorio\fecha.h
+1621993245 c:\users\administrador\desktop\parcial_laboratorio\fecha.h
 
-1621910238 source:c:\users\administrador\desktop\parcial_laboratorio\marca.c
+1621993153 source:c:\users\administrador\desktop\parcial_laboratorio\marca.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Marca.h"
 
-1621886236 c:\users\administrador\desktop\parcial_laboratorio\marca.h
+1621993245 c:\users\administrador\desktop\parcial_laboratorio\marca.h
 
-1621911212 source:c:\users\administrador\desktop\parcial_laboratorio\servicio.c
+1621992883 source:c:\users\administrador\desktop\parcial_laboratorio\servicio.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Servicio.h"
 
-1621911212 c:\users\administrador\desktop\parcial_laboratorio\servicio.h
+1621993286 c:\users\administrador\desktop\parcial_laboratorio\servicio.h
 
-1621910507 source:c:\users\administrador\desktop\parcial_laboratorio\tipo.c
+1621993131 source:c:\users\administrador\desktop\parcial_laboratorio\tipo.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Tipo.h"
 
-1621910433 c:\users\administrador\desktop\parcial_laboratorio\tipo.h
+1621993245 c:\users\administrador\desktop\parcial_laboratorio\tipo.h
 
-1621918575 source:c:\users\administrador\desktop\parcial_laboratorio\trabajo.c
+1621993046 source:c:\users\administrador\desktop\parcial_laboratorio\trabajo.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Trabajo.h"
 
-1621917967 c:\users\administrador\desktop\parcial_laboratorio\trabajo.h
+1621991753 c:\users\administrador\desktop\parcial_laboratorio\trabajo.h
 	"Notebook.h"
 	"Servicio.h"
 	"Marca.h"
 	"Fecha.h"
 	"utn.h"
 
-1621908685 c:\users\administrador\desktop\parcial_laboratorio\notebook.h
+1621993245 c:\users\administrador\desktop\parcial_laboratorio\notebook.h
 	"Marca.h"
 	"Tipo.h"
 
-1621909756 source:c:\users\administrador\desktop\parcial_laboratorio\notebook.c
+1621993153 source:c:\users\administrador\desktop\parcial_laboratorio\notebook.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -81,5 +81,5 @@
 	"Tipo.h"
 	"utn.h"
 
-1621880339 c:\users\administrador\desktop\parcial_laboratorio\datahard.h
+1621979006 c:\users\administrador\desktop\parcial_laboratorio\datahard.h
 

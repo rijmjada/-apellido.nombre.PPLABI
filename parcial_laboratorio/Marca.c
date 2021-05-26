@@ -28,7 +28,6 @@ void mostrarMarcas(sMarca listaMarcas)
     printf("-----------------------------\n");
 }
 
-
 int mostrarListaDeMarcas(sMarca listaMarcas[],int tamMarcas)
 {
     int flag = ERROR;
@@ -53,7 +52,7 @@ int mostrarListaDeMarcas(sMarca listaMarcas[],int tamMarcas)
 int cargarDescripcionMarca(int id, sMarca listaMarcas[], int tamMarcas,char descrip[])
 {
 
-    int todoOk = -1;
+    int todoOk = ERROR;
 
     if(listaMarcas != NULL && tamMarcas > 0 && descrip != NULL){
 
@@ -63,7 +62,7 @@ int cargarDescripcionMarca(int id, sMarca listaMarcas[], int tamMarcas,char desc
 
                 strcpy(descrip,listaMarcas[i].descpMarca);
 
-                todoOk = 1;
+                todoOk = OK;
                 break;
             }
         }
