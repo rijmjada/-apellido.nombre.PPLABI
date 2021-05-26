@@ -14,7 +14,7 @@ typedef struct
     char modelo[20];
     sMarca marcaN;
     sTipo tipo;
-    int precio;
+    float precio;
     int isEmpty;
 
 } sNotebook;
@@ -150,5 +150,7 @@ int ordenarNotebooksPorPrecio(sNotebook listaNotebook[],int tam);
 int ordenarNotebooksPorMarca(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca);
 int contarMarcasNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca);
 int contarTiposNotebook(sNotebook listaNotebook[],int tam,sTipo listaTipos[],int tamTipos);
+
+int mostrarNotebookMasCara(sNotebook listaNotebook[],int tam,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo);
 
 //------------------------------------------------------------------------------------------------------------------//

@@ -298,5 +298,3 @@ void hardcodearTrabajos(sTrabajo lista[],int tam){
         idSer++;
     }
 }
-
-

@@ -24,8 +24,8 @@ int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM
 
     int retorno = ERROR;
     char bufferModelo[20];
-    int bufferIdMarca,bufferIdTipo,bufferPrecio,indice;
-
+    int bufferIdMarca,bufferIdTipo,indice;
+    float bufferPrecio;
     system("cls");
     printf("   Alta Notebook\n\n");
     printf(" Id : %d\n",*idNotebooks);
@@ -57,7 +57,7 @@ int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM
                 if(validarIdTipo(listaTipos,tamTipos,bufferIdTipo) == 1)
                 {
                     system("cls");
-                    getInt(&bufferPrecio,"\nIngrese precio $ : \n","\nERROR",1,999999,5);
+                    getFloat(&bufferPrecio,"\nIngrese precio $ : \n","\nERROR",1.1,999999.9,5);
 
 
                     strcpy(listaNotebook[indice].modelo,bufferModelo);
@@ -170,7 +170,7 @@ int mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, s
         cargarDescripcionMarca(listaNotebook.marcaN.idMarca, listaMarca,tamMarca,descripMarca);
         cargarDescripcionTipo(listaNotebook.tipo.idTipo, listaTipo,tamTipo,descritipo);
 
-        printf("%d     %s     %s       %s       %d \n"
+        printf("%d     %s     %s       %s       %.2f \n"
                ,listaNotebook.id
                ,descripMarca
                ,listaNotebook.modelo
@@ -234,7 +234,7 @@ int modificarDatosNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[
             switch(menuModif())
             {
             case 1:
-                getInt(&listaNotebook[index].precio,"\nIngrese NUEVO precio : \n","\nERROR",1,999999,5);
+                getFloat(&listaNotebook[index].precio,"\nIngrese NUEVO precio : \n","\nERROR",1.1,999999.9,5);
                 break;
             case 2:
                 mostrarListaDeTipos(listaTipos,tamTipos);
@@ -419,7 +419,7 @@ void hardcodearNotebooks(sNotebook listaNote[],int tamNote){
     char x[]="uno";
     int id = 1;
     int marca = 1000;
-    int precio = 1505;
+    float precio = 1505.5;
     int tipo = 5000;
 
     for(int i=0; i<3; i++)
@@ -570,3 +570,27 @@ int contarTiposNotebook(sNotebook listaNotebook[],int tam,sTipo listaTipos[],int
     return retorno;
 }
 
+
+int mostrarNotebookMasCara(sNotebook listaNotebook[],int tam,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo){
+
+    int retorno = ERROR;
+    int bufferId = 0;
+    float bufferPrecio = 0;
+
+    if(listaNotebook != NULL && tam > 0)
+    {
+        for(int i=0; i<tam; i++)
+            {
+                if(listaNotebook[i].precio >= bufferPrecio && listaNotebook[i].isEmpty == 0)
+                {
+                    bufferId = listaNotebook[i].id;
+                }
+        }
+        system("cls");
+        printf("\n   ** Notebook mas cara **\n\n");
+        printf("id    Marca     Modelo      Tipo      Precio\n\n");
+        printf("-------------------------------------------------\n");
+        mostrarNotebook(listaNotebook[bufferId],listaMarca,tamMarca,listaTipo,tamTipo);
+    }
+    return retorno;
+}

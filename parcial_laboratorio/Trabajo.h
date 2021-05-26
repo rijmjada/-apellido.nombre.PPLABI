@@ -106,3 +106,6 @@ int altaTrabajo(sTrabajo
  * \return -1 si hay un error, 1 si logra su funcion
  */
 void hardcodearTrabajos(sTrabajo lista[],int tam);
+
+int mostarListaServiciosUnaNotebook(sTrabajo listaTrabajo[],sNotebook listaNotebook[],int tamNote,int tamT,sServicio listaService[], int tamS);
+int mostrarTrabajosNotebook(sTrabajo listaTrabajo,sServicio listaService[], int tamS);

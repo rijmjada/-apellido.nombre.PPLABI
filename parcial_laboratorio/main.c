@@ -9,6 +9,7 @@
 #include "Marca.h"
 #include "Fecha.h"
 #include "Notebook.h"
+#include "Extras.h"
 
 #define TAM_Notebooks 10
 #define TAM_Marcas 4
@@ -16,8 +17,6 @@
 #define TAM_Servicios 4
 #define TAM_Jobs 1000
 
-int menu();
-int subMenu();
 
 int main()
 {
@@ -26,8 +25,6 @@ int main()
 
     inicializarlistaNotebook(listaNotebook,TAM_Notebooks); //inicializo lista iSempty
     inicializarlistaTrabajos(listaTrabajos,TAM_Jobs);
-
-    //hardcodearNotebook();
 
     sMarca listaMarcas[TAM_Marcas]=
     {
@@ -152,32 +149,36 @@ int main()
             switch(subMenu())
             {
             case 1:
-                mostrarListaSeleccionTipo(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                mostrarListaSeleccionTipo(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos); // Seleeciona un "tipo" y muestra la lista de la misma
                 break;
 
             case 2:
-                mostrarListaSeleccionMarca(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                mostrarListaSeleccionMarca(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos); // Seleeciona una "marca" y muestra la lista de la misma
                 break;
 
             case 3:
-                ordenarNotebooksPorPrecio(listaNotebook,TAM_Notebooks);
-                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                ordenarNotebooksPorPrecio(listaNotebook,TAM_Notebooks);  // ORDENA NOTEBOOKS POR PRECIO ASCENDENTE
+                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos); // MUESTRO LA LISTA
                 break;
 
             case 4:
-                ordenarNotebooksPorMarca(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas);
-                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);
+                ordenarNotebooksPorMarca(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas); // ORDENA NOTEBOOKS POR MARCA
+                mostrarListaNotebooks(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos);// MUESTRO LA LISTA
                 break;
 
             case 5:
-                mostrarListaDeMarcas(listaMarcas,TAM_Marcas);
-                contarMarcasNotebook(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas);
+                mostrarListaDeMarcas(listaMarcas,TAM_Marcas); // MUESTRO LISTA DE MARCAS AL USUARIO PARA QUE SELECCIONE UNA
+                contarMarcasNotebook(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas); // HAGO UN CONTEO SEGUN LA SELECCION DEL USUARIO
                 break;
             case 6:
-                mostrarListaDeTipos(listaTipos,TAM_Tipos);
-                contarTiposNotebook(listaNotebook,TAM_Notebooks,listaTipos,TAM_Tipos);
+                mostrarListaDeTipos(listaTipos,TAM_Tipos);// MUESTRO LISTA DE TIPOS AL USUARIO PARA QUE SELECCIONE UNA
+                contarTiposNotebook(listaNotebook,TAM_Notebooks,listaTipos,TAM_Tipos);// HAGO UN CONTEO SEGUN LA SELECCION DEL USUARIO
                 break;
+
             case 7:
+                mostrarNotebookMasCara(listaNotebook,TAM_Notebooks,listaMarcas,TAM_Marcas,listaTipos,TAM_Tipos); // MUESTRA NOTEBOOK MAS CARA
+                break;
+            case 8:
                 printf("\n %d \n",flag);
                 break;
 
@@ -200,6 +201,7 @@ int main()
 
         case 99:
             hardcodearTrabajos(listaTrabajos,TAM_Jobs);
+            printf("\n Primero Seleccione la opcion 98\n");
             flagWork = 1;
             break;
 
@@ -216,51 +218,4 @@ int main()
     return 0;
 }
 
-int menu()
-{
 
-    int opcionMenu;
-    system("cls");
-    printf("\n    *** MENU OPCIONES ***\n");
-    printf("---------------------------\n");
-    printf("\n1- Alta Notebook\n");
-    printf("2- Modificar Notebook\n");
-    printf("3- Baja Notebook\n");
-    printf("4- Listar Notebook\n");
-    printf("5- Listar Marcas\n");
-    printf("6- Listar Tipos\n");
-    printf("7- Listar Servicios\n");
-    printf("8- Alta Trabajo\n");
-    printf("9- Listar Trabajos\n");
-    printf("10- Menu Extra\n");
-    printf("11- SALIR\n");
-    printf("\n\n");
-    printf("98- hardcodear notebooks\n");
-    printf("99- hardcodear trabajos\n");
-    fflush(stdin);
-    scanf("%d",&opcionMenu);
-
-    return opcionMenu;
-
-}
-//--------------------------------Extras*-------------------BORRAR ARRIBA MAIN Y SWITCH !!!
-int subMenu()
-{
-
-    int opcionMenu;
-    system("cls");
-    printf("\n    *** Menu Informes Seleccion ***\n");
-    printf("---------------------------\n");
-    printf("\n1-Listar tipos.\n");
-    printf("2-Listar marcas.\n");
-    printf("3-Ordenar por precio.\n");
-    printf("4-Ordenar por marca.\n");
-    printf("5-Contador unidades por marca.\n");
-    printf("6-Contador unidades por tipo.\n");
-    printf("7-Vacio\n");
-    fflush(stdin);
-    scanf("%d",&opcionMenu);
-
-    return opcionMenu;
-
-}

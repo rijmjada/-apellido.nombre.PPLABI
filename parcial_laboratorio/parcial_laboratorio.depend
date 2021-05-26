@@ -11,7 +11,7 @@
 
 1621917967 c:\users\administrador\desktop\parcial_laboratorio\utn.h
 
-1621993191 source:c:\users\administrador\desktop\parcial_laboratorio\main.c
+1622028346 source:c:\users\administrador\desktop\parcial_laboratorio\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -22,6 +22,7 @@
 	"Marca.h"
 	"Fecha.h"
 	"Notebook.h"
+	"Extras.h"
 
 1621911761 source:c:\users\administrador\desktop\parcial_laboratorio\fecha.c
 	<stdio.h>
@@ -55,24 +56,24 @@
 
 1621993245 c:\users\administrador\desktop\parcial_laboratorio\tipo.h
 
-1621993046 source:c:\users\administrador\desktop\parcial_laboratorio\trabajo.c
+1622028241 source:c:\users\administrador\desktop\parcial_laboratorio\trabajo.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Trabajo.h"
 
-1621991753 c:\users\administrador\desktop\parcial_laboratorio\trabajo.h
+1621998525 c:\users\administrador\desktop\parcial_laboratorio\trabajo.h
 	"Notebook.h"
 	"Servicio.h"
 	"Marca.h"
 	"Fecha.h"
 	"utn.h"
 
-1621993245 c:\users\administrador\desktop\parcial_laboratorio\notebook.h
+1622027219 c:\users\administrador\desktop\parcial_laboratorio\notebook.h
 	"Marca.h"
 	"Tipo.h"
 
-1621993153 source:c:\users\administrador\desktop\parcial_laboratorio\notebook.c
+1622027574 source:c:\users\administrador\desktop\parcial_laboratorio\notebook.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -82,4 +83,12 @@
 	"utn.h"
 
 1621979006 c:\users\administrador\desktop\parcial_laboratorio\datahard.h
+
+1622027655 source:c:\users\administrador\desktop\parcial_laboratorio\extras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Extras.h"
+
+1621994685 c:\users\administrador\desktop\parcial_laboratorio\extras.h
 
