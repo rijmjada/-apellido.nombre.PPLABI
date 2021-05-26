@@ -29,6 +29,8 @@ int altaTrabajo(sTrabajo
                 int tamMarcas,
                 sTipo listaTipos[],
                 int tamTipos,
+                sCliente listaClientes[],
+                int tamClientes,
                 int* idTrabajos){
 
     int retorno = ERROR;
@@ -55,7 +57,7 @@ int altaTrabajo(sTrabajo
         }
         else
         {
-            mostrarListaNotebooks(listaNotebooks,tamNote,listaMarcas,tamMarcas,listaTipos,tamTipos); // MUESTRO LISTA DE NOTEBOOKS
+            mostrarListaNotebooks(listaNotebooks,tamNote,listaMarcas,tamMarcas,listaTipos,tamTipos,listaClientes,tamClientes); // MUESTRO LISTA DE NOTEBOOKS
 
             getInt(&bufferIdNote,"\nIngrese id notebook:\n","\nId Invalido\n",1,9999,3);// PIDO AL USUARIO INGRESE UN ID  DE NOTEBOOKS
 

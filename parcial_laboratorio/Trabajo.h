@@ -9,6 +9,7 @@
 #include "Marca.h"
 #include "Fecha.h"
 #include "utn.h"
+#include "Cliente.h"
 
 typedef struct{
 
@@ -87,14 +88,16 @@ int mostrarListaTrabajos(sTrabajo listaTrabajo[],int tam,sNotebook listaNote[],i
 int altaTrabajo(sTrabajo
                 listaTrabajos[],
                 int tamTrabajo,
-                sNotebook listaNotebooks[]
-                ,int tamNote,
+                sNotebook listaNotebooks[],
+                int tamNote,
                 sServicio listaService[],
                 int tamSer,
                 sMarca listaMarcas[],
                 int tamMarcas,
                 sTipo listaTipos[],
                 int tamTipos,
+                sCliente listaClientes[],
+                int tamClientes,
                 int* idTrabajos);
 
 //----------------------------------------------------EXTRAS------------------------------------------------//

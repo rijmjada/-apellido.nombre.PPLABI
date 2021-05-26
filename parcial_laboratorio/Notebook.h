@@ -3,6 +3,8 @@
 
 #include "Marca.h"
 #include "Tipo.h"
+#include "Cliente.h"
+
 
 #define ERROR -1
 #define OK 1
@@ -11,6 +13,7 @@ typedef struct
 {
 
     int id;
+    int idCliente;
     char modelo[20];
     sMarca marcaN;
     sTipo tipo;
@@ -48,7 +51,7 @@ int buscarEspacioLibre(sNotebook listaNotebook[],int tam);
  * \param *idNotebooks direccion de la variable a incrementar
  * \return 1 si cumplio la funcion, -1 caso contrario
  */
-int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM,sTipo listaTipos[],int tamTipos, int* idNotebooks);
+int altaNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamM,sTipo listaTipos[],int tamTipos,sCliente listaCliente[],int tamCliente, int* idNotebooks);
 
 /** \brief Da de alta una posicion dentro del array "listaNotebook"
  * \param listaNotebook array de "notebooks"
@@ -79,8 +82,7 @@ int menuModif();
  * \param tamTipo tamaño del array "listaTipo"
  * \return 1 si cumplio la funcion, -1 caso contrario
  */
-int mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo);
-
+int mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo,sCliente listaCliente[],int tamCliente);
 
 
 /** \brief Muestra lista activa del array "listaNotebook"
@@ -92,7 +94,7 @@ int mostrarNotebook(sNotebook listaNotebook,sMarca listaMarca[], int tamMarca, s
  * \param tamTipos tamaño del array "listaTipos"
  * \return 1 si cumplio la funcion, -1 caso contrario
  */
-int mostrarListaNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos);
+int mostrarListaNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos,sCliente listaCliente[],int tamCliente);
 
 /** \brief Modifica una posicion seleccionada del array "listaNotebook"
  * \param listaNotebook array "Notebook"
@@ -103,7 +105,7 @@ int mostrarListaNotebooks(sNotebook listaNotebook[],int tam,sMarca listaMarcas[]
  * \param tamTipos tamaño del array "listaTipos"
  * \return 1 si cumplio la funcion, -1 caso contrario
  */
-int modificarDatosNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos);
+int modificarDatosNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos,sCliente listaClientes[],int tamClientes);
 
 
 /** \brief Ordena el array de "listaNotebook"
@@ -143,14 +145,14 @@ int validarIdTipo(sTipo lista[],int tam, int id);
 
 //------------------------------------------------EXTRAS----------------------------------------------------------------//
 
-int mostrarListaSeleccionTipo(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos);
-int mostrarListaSeleccionMarca(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos);
+int mostrarListaSeleccionMarca(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos,sCliente listaCliente[],int tamCliente);
+int mostrarListaSeleccionTipo(sNotebook listaNotebook[],int tam,sMarca listaMarcas[],int tamMarcas,sTipo listaTipos[],int tamTipos,sCliente listaCliente[],int tamCliente);
 void hardcodearNotebooks(sNotebook listaNote[],int tamNote);
 int ordenarNotebooksPorPrecio(sNotebook listaNotebook[],int tam);
 int ordenarNotebooksPorMarca(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca);
 int contarMarcasNotebook(sNotebook listaNotebook[],int tam,sMarca listaMarca[],int tamMarca);
 int contarTiposNotebook(sNotebook listaNotebook[],int tam,sTipo listaTipos[],int tamTipos);
 
-int mostrarNotebookMasCara(sNotebook listaNotebook[],int tam,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo);
-
+int mostrarNotebookMasCara(sNotebook listaNotebook[],int tam,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo,sCliente listaCliente[], int tamCliente);
+int mostrarNotebookMasBarata(sNotebook listaNotebook[],int tam,sMarca listaMarca[], int tamMarca, sTipo listaTipo[],int tamTipo,sCliente listaCliente[], int tamCliente);
 //------------------------------------------------------------------------------------------------------------------//

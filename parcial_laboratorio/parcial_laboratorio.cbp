@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Cliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Cliente.h" />
 		<Unit filename="Extras.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -59,6 +63,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Trabajo.h" />
+		<Unit filename="data.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

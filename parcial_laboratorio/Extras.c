@@ -39,14 +39,15 @@ int subMenu()
     system("cls");
     printf("\n    *** Menu Informes Seleccion ***\n");
     printf("---------------------------\n");
-    printf("\n1-Listar tipos.\n");
-    printf("2-Listar marcas.\n");
+    printf("\n1-Mostrar las notebooks del tipo seleccionado por el usuario.\n");
+    printf("2-Mostrar notebooks de una marca seleccionada.\n");
     printf("3-Ordenar por precio.\n");
-    printf("4-Ordenar por marca.\n");
+    printf("4-Mostrar un listado de las notebooks separadas por marca.\n");
     printf("5-Contador unidades por marca.\n");
     printf("6-Contador unidades por tipo.\n");
     printf("7-Mostrar Notebook mas cara\n");
-    printf("8-VACIO\n");
+    printf("8-Mostrar lista Clientes\n");
+    printf("9-Mostrar notebook mas barata\n");
     fflush(stdin);
     scanf("%d",&opcionMenu);
 
